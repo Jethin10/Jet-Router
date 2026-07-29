@@ -2,6 +2,13 @@ import { NextResponse } from "next/server";
 import { killAppProcesses, spawnUpdaterAndExit } from "@/lib/appUpdater";
 
 export async function POST() {
+  if (process.env.JET_ROUTER_ENABLE_NPM_UPDATER !== "true") {
+    return NextResponse.json(
+      { success: false, message: "The npm self-updater is disabled for this source deployment." },
+      { status: 403 }
+    );
+  }
+
   if (process.env.NODE_ENV !== "production") {
     return NextResponse.json(
       { success: false, message: "Update is only available in production build (jet-router CLI)" },

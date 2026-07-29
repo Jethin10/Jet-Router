@@ -243,7 +243,7 @@ docs/            architecture and operations documentation
 
 Jet Router is available under the [MIT License](LICENSE).
 
-This project is derived from the open-source 9Router project. The original copyright notice is retained in the license, and additional attribution is recorded in [NOTICE](NOTICE).
+Third-party open-source attribution is recorded in [NOTICE](NOTICE).
 
 ## Support
 

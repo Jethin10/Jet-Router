@@ -53,6 +53,7 @@ docs/*
 !docs/ARCHITECTURE.md
 !docs/UNIFIED_ROUTER_PLAN.md
 !docs/CUSTOM_ROUTER_SETUP.md
+!docs/PRODUCTION.md
 test/*
 open-sse/test/*
 RM.vn.md
@@ -62,9 +63,6 @@ PUBLIC.md
 Thanks.md
 PUBLIC.en.md
 PR/*
-package-lock.json
-
-
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
 README1.md

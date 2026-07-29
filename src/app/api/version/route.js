@@ -3,6 +3,7 @@ import pkg from "../../../../package.json" with { type: "json" };
 
 const NPM_PACKAGE_NAME = "jet-router";
 const VERSION_CACHE_TTL_MS = 3600000; // cache npm latest lookup for 1h
+const UPDATES_ENABLED = process.env.JET_ROUTER_ENABLE_NPM_UPDATER === "true";
 
 // Survive hot reload; one cache per process
 const versionCache = (global.__npmVersionCache ??= { value: null, fetchedAt: 0 });
@@ -53,9 +54,18 @@ async function getLatestVersionCached() {
 }
 
 export async function GET() {
-  const latestVersion = await getLatestVersionCached();
   const currentVersion = pkg.version;
+  if (!UPDATES_ENABLED) {
+    return Response.json({
+      currentVersion,
+      latestVersion: null,
+      hasUpdate: false,
+      updatesEnabled: false,
+    });
+  }
+
+  const latestVersion = await getLatestVersionCached();
   const hasUpdate = latestVersion ? compareVersions(latestVersion, currentVersion) > 0 : false;
 
-  return Response.json({ currentVersion, latestVersion, hasUpdate });
+  return Response.json({ currentVersion, latestVersion, hasUpdate, updatesEnabled: true });
 }

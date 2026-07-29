@@ -1,10 +1,14 @@
 services:
   jet-router:
-    image: Jethin10/Jet-Router:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/jethin10/jet-router:latest
     container_name: jet-router
-    restart: always
+    restart: unless-stopped
+    init: true
     ports:
-      - "20128:20128"
+      - "${JET_ROUTER_BIND_ADDRESS:-127.0.0.1}:${PORT:-20128}:20128"
     volumes:
       - jet-router-data:/app/data
     env_file:
@@ -15,15 +19,35 @@ services:
       HOSTNAME: "0.0.0.0"
       NODE_ENV: production
       HEADROOM_URL: http://headroom:8787
-    depends_on:
-      - headroom
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:20128/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   headroom:
     image: ghcr.io/chopratejas/headroom:latest
     container_name: headroom
-    restart: always
-    ports:
-      - "8787:8787"
+    restart: unless-stopped
+    profiles: ["token-saver"]
+    expose:
+      - "8787"
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
   jet-router-data:

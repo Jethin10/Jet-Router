@@ -1,4 +1,47 @@
 const http = require("http");
+const fs = require("fs");
+const path = require("path");
+
+try {
+  require("@next/env").loadEnvConfig(process.cwd(), false);
+} catch {
+  // The standalone bundle already receives its environment from the process.
+}
+
+process.env.NODE_ENV ||= "production";
+process.env.PORT ||= "20128";
+process.env.HOSTNAME ||= "0.0.0.0";
+
+function assertProductionConfiguration() {
+  if (process.env.NODE_ENV !== "production") return;
+  if (process.env.JET_ROUTER_ALLOW_INSECURE_DEFAULTS === "true") return;
+
+  const requirements = [
+    ["JWT_SECRET", 32],
+    ["API_KEY_SECRET", 32],
+    ["MACHINE_ID_SALT", 16],
+    ["INITIAL_PASSWORD", 12],
+  ];
+  const invalid = requirements
+    .filter(([name, minimum]) => {
+      const value = process.env[name]?.trim() || "";
+      return value.length < minimum || /^(change-me|endpoint-proxy|password$|123456$)/i.test(value);
+    })
+    .map(([name, minimum]) => `${name} (minimum ${minimum} characters)`);
+
+  if (process.env.JWT_SECRET && process.env.JWT_SECRET === process.env.API_KEY_SECRET) {
+    invalid.push("API_KEY_SECRET (must differ from JWT_SECRET)");
+  }
+
+  if (invalid.length > 0) {
+    throw new Error(
+      `Refusing to start Jet Router with insecure production configuration: ${invalid.join(", ")}. ` +
+      "Set unique secrets in .env or explicitly set JET_ROUTER_ALLOW_INSECURE_DEFAULTS=true for an isolated test environment."
+    );
+  }
+}
+
+assertProductionConfiguration();
 
 const origCreate = http.createServer.bind(http);
 
@@ -29,4 +72,12 @@ http.createServer = (...args) => {
   return origCreate(...rest, wrapped);
 };
 
-require("./server.js");
+const bundledServer = path.join(__dirname, "server.js");
+const localStandaloneServer = path.join(__dirname, ".next", "standalone", "server.js");
+const serverEntry = fs.existsSync(bundledServer) ? bundledServer : localStandaloneServer;
+
+if (!fs.existsSync(serverEntry)) {
+  throw new Error("Jet Router production bundle is missing. Run `npm run build` before `npm start`.");
+}
+
+require(serverEntry);
