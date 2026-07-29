@@ -21,14 +21,14 @@ function chunkMeta(state) {
  * Kiro events: assistantResponseEvent, codeEvent, supplementaryWebLinksEvent, etc.
  */
 export function kiroToOpenAIResponse(chunk, state) {
-  
+
   if (!chunk) return null;
 
   // If chunk is already in OpenAI format (from executor transform), return as-is
   if (chunk.object === "chat.completion.chunk" && chunk.choices) {
     return chunk;
   }
-  
+
   // Handle string chunk (raw SSE data)
   let data = chunk;
   if (typeof chunk === "string") {

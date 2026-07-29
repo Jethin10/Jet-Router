@@ -5,7 +5,7 @@ import { LOCALE_COOKIE, normalizeLocale, isSupportedLocale } from "@/i18n/config
 export async function POST(request) {
   try {
     const { locale } = await request.json();
-    
+
     if (!locale || !isSupportedLocale(locale)) {
       return NextResponse.json(
         { error: "Invalid locale" },

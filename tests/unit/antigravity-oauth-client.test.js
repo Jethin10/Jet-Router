@@ -2,12 +2,12 @@
 import { describe, it, expect } from "vitest";
 
 const EXPECTED = {
-  clientId: process.env.NINEROUTER_ANTIGRAVITY_CLIENT_ID || "",
-  clientSecret: process.env.NINEROUTER_ANTIGRAVITY_CLIENT_SECRET || "",
+  clientId: process.env.JET_ROUTER_ANTIGRAVITY_CLIENT_ID || "",
+  clientSecret: process.env.JET_ROUTER_ANTIGRAVITY_CLIENT_SECRET || "",
 };
 const GOOGLE = {
-  clientId: process.env.NINEROUTER_GOOGLE_CLIENT_ID || "",
-  clientSecret: process.env.NINEROUTER_GOOGLE_CLIENT_SECRET || "",
+  clientId: process.env.JET_ROUTER_GOOGLE_CLIENT_ID || "",
+  clientSecret: process.env.JET_ROUTER_GOOGLE_CLIENT_SECRET || "",
 };
 
 describe("antigravity oauth client (deduped)", () => {

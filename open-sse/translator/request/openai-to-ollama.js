@@ -100,14 +100,14 @@ function normalizeMessages(messages) {
     // Handle assistant messages with tool_calls
     if (msg.role === ROLE.ASSISTANT && msg.tool_calls) {
       const content = normalizeContent(msg.content) || "";
-      
+
       // Convert OpenAI tool_calls format to Ollama format
       const ollamaToolCalls = msg.tool_calls.map(tc => ({
         type: OPENAI_BLOCK.FUNCTION,
         function: {
           index: tc.index || 0,
           name: tc.function?.name || "",
-          arguments: typeof tc.function?.arguments === "string" 
+          arguments: typeof tc.function?.arguments === "string"
             ? safeParseJSON(tc.function.arguments || "{}", {})
             : tc.function?.arguments || {}
         }

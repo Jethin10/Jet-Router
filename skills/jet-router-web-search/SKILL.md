@@ -1,25 +1,25 @@
 ---
-name: 9router-web-search
-description: Web search via 9Router /v1/search using Tavily / Exa / Brave / Serper / SearXNG / Google PSE / Linkup / SearchAPI / You.com / Perplexity. Use when the user wants to search the web, look up information, find articles, or query a search engine.
+name: jet-router-web-search
+description: Web search via Jet Router /v1/search using Tavily / Exa / Brave / Serper / SearXNG / Google PSE / Linkup / SearchAPI / You.com / Perplexity. Use when the user wants to search the web, look up information, find articles, or query a search engine.
 ---
 
-# 9Router — Web Search
+# Jet Router — Web Search
 
-Requires `NINEROUTER_URL` (and `NINEROUTER_KEY` if auth enabled). See https://raw.githubusercontent.com/decolua/9router/refs/heads/master/skills/9router/SKILL.md for setup.
+Requires `JET_ROUTER_URL` (and `JET_ROUTER_KEY` if auth enabled). See https://raw.githubusercontent.com/Jethin10/Jet-Router/refs/heads/master/skills/jet-router/SKILL.md for setup.
 
 ## Discover
 
 ```bash
-curl $NINEROUTER_URL/v1/models/web | jq '.data[] | select(.kind=="webSearch") | .id'
+curl $JET_ROUTER_URL/v1/models/web | jq '.data[] | select(.kind=="webSearch") | .id'
 # Per-provider params (searchTypes, maxResults, required options like cx for google-pse)
-curl "$NINEROUTER_URL/v1/models/info?id=tavily/search"
+curl "$JET_ROUTER_URL/v1/models/info?id=tavily/search"
 ```
 
 IDs end in `/search` (e.g. `tavily/search`). Combos (`owned_by:"combo"`) chain providers with auto-fallback.
 
 ## Endpoint
 
-`POST $NINEROUTER_URL/v1/search`
+`POST $JET_ROUTER_URL/v1/search`
 
 | Field | Required | Notes |
 |---|---|---|
@@ -32,18 +32,18 @@ IDs end in `/search` (e.g. `tavily/search`). Combos (`owned_by:"combo"`) chain p
 ## Examples
 
 ```bash
-curl -X POST $NINEROUTER_URL/v1/search \
-  -H "Authorization: Bearer $NINEROUTER_KEY" \
+curl -X POST $JET_ROUTER_URL/v1/search \
+  -H "Authorization: Bearer $JET_ROUTER_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"model":"tavily","query":"9Router open source","max_results":5}'
+  -d '{"model":"tavily","query":"Jet Router open source","max_results":5}'
 ```
 
 JS:
 
 ```js
-const r = await fetch(`${process.env.NINEROUTER_URL}/v1/search`, {
+const r = await fetch(`${process.env.JET_ROUTER_URL}/v1/search`, {
   method: "POST",
-  headers: { "Authorization": `Bearer ${process.env.NINEROUTER_KEY}`, "Content-Type": "application/json" },
+  headers: { "Authorization": `Bearer ${process.env.JET_ROUTER_KEY}`, "Content-Type": "application/json" },
   body: JSON.stringify({ model: "search-combo", query: "latest LLM benchmarks", max_results: 10 }),
 });
 console.log(await r.json());
@@ -54,7 +54,7 @@ console.log(await r.json());
 ```json
 {
   "provider": "tavily",
-  "query": "9Router open source",
+  "query": "Jet Router open source",
   "results": [
     {
       "title": "...", "url": "https://...", "display_url": "github.com/...",

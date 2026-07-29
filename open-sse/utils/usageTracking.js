@@ -73,7 +73,7 @@ export function filterUsageForFormat(usage, targetFormat) {
   // Define allowed fields for each format
   const formatFields = {
     [FORMATS.CLAUDE]: [
-      'input_tokens', 'output_tokens', 
+      'input_tokens', 'output_tokens',
       'cache_read_input_tokens', 'cache_creation_input_tokens',
       'estimated'
     ],
@@ -98,7 +98,7 @@ export function filterUsageForFormat(usage, targetFormat) {
 
   // Get fields for target format
   let fields = formatFields[targetFormat];
-  
+
   // Use same fields for similar formats
   if (targetFormat === FORMATS.GEMINI_CLI || targetFormat === FORMATS.ANTIGRAVITY) {
     fields = formatFields[FORMATS.GEMINI];
@@ -368,10 +368,10 @@ export function estimateOutputTokens(contentLength) {
 export function formatUsage(inputTokens, outputTokens, targetFormat) {
   // Claude format uses input_tokens/output_tokens
   if (targetFormat === FORMATS.CLAUDE) {
-    return addBufferToUsage({ 
-      input_tokens: inputTokens, 
-      output_tokens: outputTokens, 
-      estimated: true 
+    return addBufferToUsage({
+      input_tokens: inputTokens,
+      output_tokens: outputTokens,
+      estimated: true
     });
   }
 

@@ -19,7 +19,7 @@ const agentRouterProvider = {
   category: "freeTier",
   authType: "apikey",
   // OpenAI Chat is the safe fallback for formats without an exact upstream
-  // transport (notably Codex Responses, which 9Router translates to Chat).
+  // transport (notably Codex Responses, which Jet Router translates to Chat).
   transport: {
     baseUrl: "https://agentrouter.org/v1/chat/completions",
     format: "openai",

@@ -33,7 +33,7 @@ export function claudeToOpenAIRequest(model, body, stream) {
     const systemContent = Array.isArray(body.system)
       ? body.system.map(s => stripAnthropicBillingHeader(s.text || "")).filter(Boolean).join("\n")
       : stripAnthropicBillingHeader(body.system);
-    
+
     if (systemContent) {
       result.messages.push({
         role: ROLE.SYSTEM,
@@ -99,7 +99,7 @@ function fixMissingToolResponsesOpenAI(messages) {
     const msg = messages[i];
     if (msg.role === ROLE.ASSISTANT && msg.tool_calls && msg.tool_calls.length > 0) {
       const toolCallIds = msg.tool_calls.map(tc => tc.id);
-      
+
       // Collect all tool response IDs that IMMEDIATELY follow this assistant message
       const respondedIds = new Set();
       let insertPosition = i + 1;
@@ -112,10 +112,10 @@ function fixMissingToolResponsesOpenAI(messages) {
           break;
         }
       }
-      
+
       // Find missing responses and insert them
       const missingIds = toolCallIds.filter(id => !respondedIds.has(id));
-      
+
       if (missingIds.length > 0) {
         const missingResponses = missingIds.map(id => ({
           role: ROLE.TOOL,
@@ -149,7 +149,7 @@ function convertClaudeMessage(msg) {
   }
 
   const role = msg.role === ROLE.USER || msg.role === ROLE.TOOL ? ROLE.USER : ROLE.ASSISTANT;
-  
+
   // Simple string content
   if (typeof msg.content === "string") {
     return { role, content: msg.content };
@@ -201,7 +201,7 @@ function convertClaudeMessage(msg) {
           } else if (block.content) {
             resultContent = JSON.stringify(block.content);
           }
-          
+
           toolResults.push({
             role: ROLE.TOOL,
             tool_call_id: block.tool_use_id,
@@ -236,7 +236,7 @@ function convertClaudeMessage(msg) {
         content: collapseTextParts(parts)
       };
     }
-    
+
     // Empty content array
     if (msg.content.length === 0) {
       return { role, content: "" };
@@ -250,7 +250,7 @@ function convertClaudeMessage(msg) {
 function convertToolChoice(choice) {
   if (!choice) return "auto";
   if (typeof choice === "string") return choice;
-  
+
   switch (choice.type) {
     case "auto": return "auto";
     case "any": return "required";

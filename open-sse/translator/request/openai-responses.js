@@ -1,6 +1,6 @@
 /**
  * Translator: OpenAI Responses API → OpenAI Chat Completions
- * 
+ *
  * Responses API uses: { input: [...], instructions: "..." }
  * Chat API uses: { messages: [...] }
  */

@@ -46,17 +46,17 @@ const readSettings = async () => {
   }
 };
 
-// Check if settings has 9Router customModels
-const has9RouterConfig = (settings) => {
+// Check if settings has Jet Router customModels
+const hasJetRouterConfig = (settings) => {
   if (!settings || !settings.customModels) return false;
-  return settings.customModels.some(m => m.id?.startsWith("custom:9Router"));
+  return settings.customModels.some(m => m.id?.startsWith("custom:Jet Router"));
 };
 
 // GET - Check droid CLI and read current settings
 export async function GET() {
   try {
     const isInstalled = await checkDroidInstalled();
-    
+
     if (!isInstalled) {
       return NextResponse.json({
         installed: false,
@@ -70,7 +70,7 @@ export async function GET() {
     return NextResponse.json({
       installed: true,
       settings,
-      has9Router: has9RouterConfig(settings),
+      hasJetRouter: hasJetRouterConfig(settings),
       settingsPath: getDroidSettingsPath(),
     });
   } catch (error) {
@@ -79,16 +79,16 @@ export async function GET() {
   }
 }
 
-// POST - Update 9Router customModels (merge with existing settings)
+// POST - Update Jet Router customModels (merge with existing settings)
 // Accepts either `model` (string, legacy single-model) or `models` (array of strings, multi-model)
 // Also accepts `activeModel` to set which model is active/primary
 export async function POST(request) {
   try {
     const { baseUrl, apiKey, model, models, activeModel } = await request.json();
-    
+
     // Accept either `models` (array) or `model` (string, legacy)
     const modelsArray = Array.isArray(models) ? models.slice() : (typeof model === "string" ? [model] : []);
-    
+
     if (!baseUrl || modelsArray.length === 0) {
       return NextResponse.json({ error: "baseUrl and at least one model are required" }, { status: 400 });
     }
@@ -111,8 +111,8 @@ export async function POST(request) {
       settings.customModels = [];
     }
 
-    // Remove all existing 9Router configs
-    settings.customModels = settings.customModels.filter(m => !m.id?.startsWith("custom:9Router"));
+    // Remove all existing Jet Router configs
+    settings.customModels = settings.customModels.filter(m => !m.id?.startsWith("custom:Jet Router"));
 
     // Normalize baseUrl to ensure /v1 suffix
     const normalizedBaseUrl = baseUrl.endsWith("/v1") ? baseUrl : `${baseUrl}/v1`;
@@ -137,7 +137,7 @@ export async function POST(request) {
       if (!m || typeof m !== "string") continue;
       settings.customModels.push({
         model: m,
-        id: `custom:9Router-${i}`,
+        id: `custom:Jet Router-${i}`,
         index: i,
         baseUrl: normalizedBaseUrl,
         apiKey: keyToUse,
@@ -171,7 +171,7 @@ export async function POST(request) {
   }
 }
 
-// DELETE - Remove 9Router customModels only (keep other settings)
+// DELETE - Remove Jet Router customModels only (keep other settings)
 export async function DELETE() {
   try {
     const settingsPath = getDroidSettingsPath();
@@ -191,10 +191,10 @@ export async function DELETE() {
       throw error;
     }
 
-    // Remove 9Router customModels
+    // Remove Jet Router customModels
     if (settings.customModels) {
-      settings.customModels = settings.customModels.filter(m => !m.id?.startsWith("custom:9Router"));
-      
+      settings.customModels = settings.customModels.filter(m => !m.id?.startsWith("custom:Jet Router"));
+
       // Remove customModels array if empty
       if (settings.customModels.length === 0) {
         delete settings.customModels;
@@ -206,7 +206,7 @@ export async function DELETE() {
 
     return NextResponse.json({
       success: true,
-      message: "9Router settings removed successfully",
+      message: "Jet Router settings removed successfully",
     });
   } catch (error) {
     console.log("Error resetting droid settings:", error);

@@ -48,28 +48,28 @@ export function filterToOpenAIFormat(body, opts = {}) {
           filteredContent.push(stripBlock(block));
         }
       }
-      
+
       // If all content was filtered, add empty text
       if (filteredContent.length === 0) {
         filteredContent.push({ type: OPENAI_BLOCK.TEXT, text: "" });
       }
-      
+
       return { ...msg, content: filteredContent };
     }
-    
+
     return msg;
   });
-  
+
   // Filter out messages with only empty text (but NEVER filter tool messages)
   body.messages = body.messages.filter(msg => {
     // Always keep tool messages
     if (msg.role === ROLE.TOOL) return true;
     // Always keep assistant messages with tool_calls
     if (msg.role === ROLE.ASSISTANT && msg.tool_calls) return true;
-    
+
     if (typeof msg.content === "string") return msg.content.trim() !== "";
     if (Array.isArray(msg.content)) {
-      return msg.content.some(b => 
+      return msg.content.some(b =>
         (b.type === OPENAI_BLOCK.TEXT && b.text?.trim()) ||
         b.type !== OPENAI_BLOCK.TEXT
       );
@@ -87,7 +87,7 @@ export function filterToOpenAIFormat(body, opts = {}) {
     body.tools = body.tools.map(tool => {
       // Already OpenAI format
       if (tool.type === OPENAI_BLOCK.FUNCTION && tool.function) return tool;
-      
+
       // Claude format: {name, description, input_schema}
       if (tool.name && (tool.input_schema || tool.description)) {
         return {
@@ -99,7 +99,7 @@ export function filterToOpenAIFormat(body, opts = {}) {
           }
         };
       }
-      
+
       // Gemini format: {functionDeclarations: [{name, description, parameters}]}
       if (tool.functionDeclarations && Array.isArray(tool.functionDeclarations)) {
         return tool.functionDeclarations.map(fn => ({
@@ -111,7 +111,7 @@ export function filterToOpenAIFormat(body, opts = {}) {
           }
         }));
       }
-      
+
       return tool;
     }).flat();
   }

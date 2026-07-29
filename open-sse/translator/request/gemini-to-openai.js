@@ -74,7 +74,7 @@ export function geminiToOpenAIRequest(model, body, stream) {
 // Convert Gemini content to OpenAI message
 function convertGeminiContent(content) {
   const role = content.role === GEMINI_ROLE.USER ? ROLE.USER : ROLE.ASSISTANT;
-  
+
   if (!content.parts || !Array.isArray(content.parts)) {
     return null;
   }

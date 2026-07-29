@@ -51,7 +51,7 @@ function normalizeToolCallId(id) {
 
 function convertMessages(messages) {
   const result = [];
-  
+
   // Build a map of tool_call_id -> tool name from assistant tool calls
   const toolCallMetaMap = new Map();
   const rememberToolMeta = (toolCallId, toolName) => {

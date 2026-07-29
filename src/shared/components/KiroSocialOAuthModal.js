@@ -60,7 +60,7 @@ export default function KiroSocialOAuthModal({ isOpen, provider, onSuccess, onCl
   const handleManualSubmit = async () => {
     try {
       setError(null);
-      
+
       // Parse callback URL - can be either kiro:// or http://localhost format
       let url;
       try {
@@ -132,9 +132,9 @@ export default function KiroSocialOAuthModal({ isOpen, provider, onSuccess, onCl
                 <p className="text-sm font-medium mb-2">Step 1: Open this URL in your browser</p>
                 <div className="flex gap-2">
                   <Input value={authUrl} readOnly className="flex-1 font-mono text-xs" />
-                  <Button 
-                    variant="secondary" 
-                    icon={copied === "auth_url" ? "check" : "content_copy"} 
+                  <Button
+                    variant="secondary"
+                    icon={copied === "auth_url" ? "check" : "content_copy"}
                     onClick={() => copy(authUrl, "auth_url")}
                   >
                     Copy

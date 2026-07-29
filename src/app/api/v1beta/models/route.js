@@ -34,7 +34,7 @@ export async function GET() {
         outputTokenLimit: 8192,
       });
     }
-    
+
     for (const [provider, providerModels] of Object.entries(PROVIDER_MODELS)) {
       for (const model of providerModels) {
         addModel({

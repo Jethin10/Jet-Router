@@ -13,7 +13,7 @@ const getColorClasses = (remainingPercentage) => {
       emoji: "🟢"
     };
   }
-  
+
   if (remainingPercentage >= 30) {
     return {
       text: "text-yellow-500",
@@ -22,7 +22,7 @@ const getColorClasses = (remainingPercentage) => {
       emoji: "🟡"
     };
   }
-  
+
   // 0-29% including 0% (out of quota) - show red
   return {
     text: "text-red-500",
@@ -35,22 +35,22 @@ const getColorClasses = (remainingPercentage) => {
 // Format reset time display
 const formatResetTimeDisplay = (resetTime) => {
   if (!resetTime) return null;
-  
+
   try {
     const resetDate = new Date(resetTime);
     const now = new Date();
     const isToday = resetDate.toDateString() === now.toDateString();
     const isTomorrow = resetDate.toDateString() === new Date(now.getTime() + 86400000).toDateString();
-    
+
     const timeStr = resetDate.toLocaleTimeString(undefined, {
       hour: "2-digit",
       minute: "2-digit",
       hour12: true,
     });
-    
+
     if (isToday) return `Today, ${timeStr}`;
     if (isTomorrow) return `Tomorrow, ${timeStr}`;
-    
+
     return resetDate.toLocaleString(undefined, {
       month: "short",
       day: "numeric",
@@ -82,7 +82,7 @@ export default function QuotaProgressBar({
 
   // percentage is already remaining percentage (from ProviderLimitCard)
   const remaining = percentage;
-  
+
   return (
     <div className="space-y-2">
       {/* Label and percentage */}

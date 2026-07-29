@@ -140,8 +140,8 @@ const parseOpenAIStyleModels = (data) => {
 };
 
 // Header sent by fetchCompatibleModelIds to detect cross-instance /models fetches
-// and break recursive loops between 9router instances connected to each other.
-const INTERNAL_MODELS_FETCH_HEADER = "x-9r-internal-models-fetch";
+// and break recursive loops between jet-router instances connected to each other.
+const INTERNAL_MODELS_FETCH_HEADER = "x-jr-internal-models-fetch";
 
 // LLM kind sentinel — combos/models with no explicit kind default to LLM
 const LLM_KIND = "llm";
@@ -253,7 +253,7 @@ function comboMatchesKinds(combo, kindFilter) {
  */
 export async function buildModelsList(kindFilter, options = {}) {
   // When this header is present, the /v1/models request came from another
-  // 9router instance's fetchCompatibleModelIds — skip dynamic fetch to break
+  // jet-router instance's fetchCompatibleModelIds — skip dynamic fetch to break
   // cross-instance recursive loops.
   const skipDynamicFetch = options.skipDynamicFetch === true;
   let connections = [];
@@ -573,7 +573,7 @@ export async function authorizeModelsRequest(request) {
 function wantsAnthropicModelsFormat(request) {
   return (
     request?.headers?.has("anthropic-version")
-    || request?.headers?.get("x-9router-api-format") === "anthropic"
+    || request?.headers?.get("x-jet-router-api-format") === "anthropic"
   );
 }
 
@@ -625,7 +625,7 @@ export async function GET(request) {
     const authError = await authorizeModelsRequest(request);
     if (authError) return authError;
 
-    // Detect cross-instance recursive /models fetch (another 9router fetching our /models)
+    // Detect cross-instance recursive /models fetch (another jet-router fetching our /models)
     const skipDynamicFetch = request?.headers?.get(INTERNAL_MODELS_FETCH_HEADER) === "1";
     const data = await buildModelsList([LLM_KIND], { skipDynamicFetch });
     return Response.json(formatModelsResponse(request, data), {

@@ -86,7 +86,7 @@ export function handleBypassRequest(body, model, userAgent = "", ccFilterNaming 
       : createNonStreamingResponse(sourceFormat, model, namingText);
   }
 
-  return stream 
+  return stream
     ? createStreamingResponse(sourceFormat, model)
     : createNonStreamingResponse(sourceFormat, model);
 }

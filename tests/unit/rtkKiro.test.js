@@ -215,7 +215,7 @@ describe("Kiro format RTK support", () => {
 
     expect(stats).not.toBeNull();
     expect(stats.hits.length).toBe(0); // Error not compressed
-    
+
     // Verify error text unchanged
     const afterText = kiroBody.conversationState.currentMessage.userInputMessage.userInputMessageContext.toolResults[0].content[0].text;
     expect(afterText).toBe(originalText);

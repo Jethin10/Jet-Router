@@ -44,8 +44,8 @@ async function showMenuWithBack(config) {
     ];
 
     // Resolve headerContent if it's a function
-    const resolvedHeader = typeof headerContent === "function" 
-      ? await headerContent(refreshedData) 
+    const resolvedHeader = typeof headerContent === "function"
+      ? await headerContent(refreshedData)
       : headerContent;
 
     const selected = await selectMenu(
@@ -65,7 +65,7 @@ async function showMenuWithBack(config) {
     // Execute action for selected item
     const actionIndex = selected - 1;
     const item = items[actionIndex];
-    
+
     if (item && item.action) {
       const shouldContinue = await item.action(refreshedData);
       // If action returns false, exit menu
@@ -113,7 +113,7 @@ async function showListMenu(config) {
 
     // Build menu items
     const menuItems = [{ label: backLabel, icon: "☆" }];
-    
+
     if (createAction) {
       menuItems.push({ label: createAction.label, icon: "☆" });
     }
@@ -123,8 +123,8 @@ async function showListMenu(config) {
       menuItems.push({ label: formatted, icon: "☆" });
     });
 
-    const header = typeof headerContent === "function" 
-      ? await headerContent(metadata) 
+    const header = typeof headerContent === "function"
+      ? await headerContent(metadata)
       : headerContent;
 
     const selected = await selectMenu(title, menuItems, 0, "", header, breadcrumb);
@@ -143,7 +143,7 @@ async function showListMenu(config) {
     // Select item
     const offset = createAction ? 2 : 1;
     const itemIndex = selected - offset;
-    
+
     if (itemIndex >= 0 && itemIndex < items.length) {
       await onSelect(items[itemIndex]);
     }

@@ -18,12 +18,12 @@ export function openaiToOpenAIResponsesResponse(chunk, state) {
   if (!chunk) {
     return flushEvents(state);
   }
-  
+
   if (!chunk.choices?.length) return [];
-  
+
   const events = [];
   const nextSeq = () => ++state.seq;
-  
+
   const emit = (eventType, data) => {
     data.sequence_number = nextSeq();
     events.push({ event: eventType, data });
@@ -37,7 +37,7 @@ export function openaiToOpenAIResponsesResponse(chunk, state) {
   if (!state.started) {
     state.started = true;
     state.responseId = chunk.id ? `resp_${chunk.id}` : state.responseId;
-    
+
     emit("response.created", {
       type: "response.created",
       response: {
@@ -123,7 +123,7 @@ function startReasoning(state, emit, idx) {
   if (!state.reasoningId) {
     state.reasoningId = `rs_${state.responseId}_${idx}`;
     state.reasoningIndex = idx;
-    
+
     emit("response.output_item.added", {
       type: "response.output_item.added",
       output_index: idx,
@@ -156,7 +156,7 @@ function emitReasoningDelta(state, emit, text) {
 function closeReasoning(state, emit) {
   if (state.reasoningId && !state.reasoningDone) {
     state.reasoningDone = true;
-    
+
     emit("response.reasoning_summary_text.done", {
       type: "response.reasoning_summary_text.done",
       item_id: state.reasoningId,
@@ -189,7 +189,7 @@ function emitTextContent(state, emit, idx, content) {
   if (!state.msgItemAdded[idx]) {
     state.msgItemAdded[idx] = true;
     const msgId = `msg_${state.responseId}_${idx}`;
-    
+
     emit("response.output_item.added", {
       type: "response.output_item.added",
       output_index: idx,
@@ -199,7 +199,7 @@ function emitTextContent(state, emit, idx, content) {
 
   if (!state.msgContentAdded[idx]) {
     state.msgContentAdded[idx] = true;
-    
+
     emit("response.content_part.added", {
       type: "response.content_part.added",
       item_id: `msg_${state.responseId}_${idx}`,
@@ -267,7 +267,7 @@ function emitToolCall(state, emit, tc) {
 
   if (!state.funcCallIds[tcIdx] && newCallId) {
     state.funcCallIds[tcIdx] = newCallId;
-    
+
     emit("response.output_item.added", {
       type: "response.output_item.added",
       output_index: tcIdx,
@@ -301,7 +301,7 @@ function closeToolCall(state, emit, idx) {
   const callId = state.funcCallIds[idx];
   if (callId && !state.funcItemDone[idx]) {
     const args = state.funcArgsBuf[idx] || "{}";
-    
+
     emit("response.function_call_arguments.done", {
       type: "response.function_call_arguments.done",
       item_id: `fc_${callId}`,
@@ -345,7 +345,7 @@ function sendCompleted(state, emit) {
 
 function flushEvents(state) {
   if (state.completedSent) return [];
-  
+
   const events = [];
   const nextSeq = () => ++state.seq;
   const emit = (eventType, data) => {
@@ -357,7 +357,7 @@ function flushEvents(state) {
   closeReasoning(state, emit);
   for (const i in state.funcCallIds) closeToolCall(state, emit, i);
   sendCompleted(state, emit);
-  
+
   return events;
 }
 
@@ -470,16 +470,16 @@ export function openaiResponsesToOpenAIResponse(chunk, state) {
       // OpenAI Responses API: input_tokens already includes cached_tokens
       // Cache info is in input_tokens_details.cached_tokens
       const cacheReadTokens = responseUsage.input_tokens_details?.cached_tokens || responseUsage.cache_read_input_tokens || 0;
-      
+
       state.usage = buildUsage({ promptTokens: inputTokens, completionTokens: outputTokens, totalTokens: inputTokens + outputTokens, cachedTokens: cacheReadTokens });
     }
-    
+
     if (!state.finishReasonSent) {
       const finishReason = computeFinishReason(state);
 
       state.finishReasonSent = true;
       state.finishReason = finishReason; // Mark for usage injection in stream.js
-      
+
       const finalChunk = buildChunk(
         { id: state.chatId, created: state.created, model: state.model || MODEL_FALLBACK },
         {},
@@ -490,7 +490,7 @@ export function openaiResponsesToOpenAIResponse(chunk, state) {
       if (state.usage && typeof state.usage === "object") {
         finalChunk.usage = state.usage;
       }
-      
+
       return finalChunk;
     }
     return null;

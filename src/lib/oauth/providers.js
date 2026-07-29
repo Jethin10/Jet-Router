@@ -635,30 +635,30 @@ const PROVIDERS = {
           },
         }
       );
-      
+
       if (!userInfoRes.ok) {
         const errorText = await userInfoRes.text();
         throw new Error(`Failed to fetch user info: ${errorText}`);
       }
-      
+
       const result = await userInfoRes.json();
       if (!result.success) {
         throw new Error(`User info request failed: ${result.message || 'Unknown error'}`);
       }
-      
+
       const userInfo = result.data || {};
-      
+
       // Validate API key (critical for iFlow)
       if (!userInfo.apiKey || userInfo.apiKey.trim() === "") {
         throw new Error("Empty API key returned from iFlow");
       }
-      
+
       // Validate email/phone
       const email = userInfo.email?.trim() || userInfo.phone?.trim();
       if (!email) {
         throw new Error("Missing account email/phone in user info");
       }
-      
+
       return { userInfo };
     },
     mapTokens: (tokens, extra) => ({

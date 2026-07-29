@@ -35,7 +35,7 @@ function emitFunctionCall(functionCall, state) {
 // Convert Gemini response chunk to OpenAI format
 export function geminiToOpenAIResponse(chunk, state) {
   if (!chunk) return null;
-  
+
   // Handle Antigravity wrapper
   const response = chunk.response || chunk;
   if (!response || !response.candidates?.[0]) return null;
@@ -58,12 +58,12 @@ export function geminiToOpenAIResponse(chunk, state) {
     for (const part of content.parts) {
       const hasThoughtSig = part.thoughtSignature || part.thought_signature;
       const isThought = part.thought === true;
-      
+
       // Handle thought signature (thinking mode)
       if (hasThoughtSig) {
         const hasTextContent = part.text !== undefined && part.text !== "";
         const hasFunctionCall = !!part.functionCall;
-        
+
         if (hasTextContent) {
           results.push(buildChunk(
             chunkMeta(state),
@@ -71,7 +71,7 @@ export function geminiToOpenAIResponse(chunk, state) {
             null
           ));
         }
-        
+
         if (hasFunctionCall) {
           results.push(emitFunctionCall(part.functionCall, state));
         }
@@ -124,14 +124,14 @@ export function geminiToOpenAIResponse(chunk, state) {
     if (finishReason === OPENAI_FINISH.STOP && state.geminiToolCallCount > 0) {
       finishReason = OPENAI_FINISH.TOOL_CALLS;
     }
-    
+
     const finalChunk = buildChunk(chunkMeta(state), {}, finishReason);
-    
+
     // Include usage in final chunk for downstream translators
     if (state.usage) {
       finalChunk.usage = state.usage;
     }
-    
+
     results.push(finalChunk);
     state.finishReason = finishReason;
   }

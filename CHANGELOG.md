@@ -25,7 +25,7 @@
 - **CLI tools**: Grok Build setup — choose separate main/general-purpose/explore/plan models and preserve each model's context window
 - **GitHub Copilot**: route Claude models through Copilot's native `/v1/messages`
 - **Kiro**: add GPT-5.6 model family (#2596)
-- **RTK**: `X-9Router-Token-Saver` header to bypass token savers per request
+- **RTK**: `X-Jet-Router-Token-Saver` header to bypass token savers per request
 - **Providers**: quota visibility settings
 - **Translator**: drop temperature for all Claude models
 - **i18n**: Thai (th) + Persian (fa) translations / README
@@ -275,7 +275,7 @@
 - Dashboard: show provider node name instead of connection name in topology (#1770) + show explicit `kind="llm"` combos on combos page (#1684)
 
 ## Docs
-- README: add Indonesian 9Router tutorial video (#1709)
+- README: add Indonesian Jet Router tutorial video (#1709)
 
 # v0.4.71 (2026-06-06)
 
@@ -292,7 +292,7 @@
 - Codex: durable OAuth refresh lifecycle (#1664)
 - Tunnel: skip virtual interfaces to prevent false netchange watchdog
 - Claude: fix forced tool_choice 400 on cc/ OAuth route (#1592)
-- Proxy: raise Next client body limit to 128MB via `NINEROUTER_PROXY_CLIENT_MAX_BODY_SIZE` (#1529, #1572)
+- Proxy: raise Next client body limit to 128MB via `JET_ROUTER_PROXY_CLIENT_MAX_BODY_SIZE` (#1529, #1572)
 - MiniMax: echo `reasoning_content` on follow-up turns to avoid 400 (#1543)
 - Kiro: handle 400 on tool-bearing history without client tools; add mappable "auto" model slot; fix binary EventStream crash + add models & TTS tool filtering
 - Antigravity: passthrough tab-autocomplete + mark default agent slot mandatory
@@ -334,7 +334,7 @@
 ## Fixes
 - Codex: auto-retry when upstream drops mid-stream (no more hangs)
 - Codex: fix random 400/404 errors, tool-calling failures, and unstable prompt cache
-- MITM: support Antigravity 2.x 
+- MITM: support Antigravity 2.x
 - Sanitize Read tool args to prevent retry loops from non-Anthropic models (#1144)
 - Implement json_schema fallback for OpenAI-compatible providers without native Structured Output (#1343)
 - Strip empty Read pages argument in OpenAI-to-Claude translator (#1354)

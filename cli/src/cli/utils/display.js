@@ -34,9 +34,9 @@ function showBox(title, content, width = 60) {
   const lines = content.split("\n");
 
   // Top border with title
-  const topBorder = BOX_CHARS.topLeft + BOX_CHARS.horizontal.repeat(2) + 
-    ` ${title} ` + 
-    BOX_CHARS.horizontal.repeat(Math.max(0, innerWidth - title.length - 3)) + 
+  const topBorder = BOX_CHARS.topLeft + BOX_CHARS.horizontal.repeat(2) +
+    ` ${title} ` +
+    BOX_CHARS.horizontal.repeat(Math.max(0, innerWidth - title.length - 3)) +
     BOX_CHARS.topRight;
 
   console.log(topBorder);
@@ -48,8 +48,8 @@ function showBox(title, content, width = 60) {
   });
 
   // Bottom border
-  const bottomBorder = BOX_CHARS.bottomLeft + 
-    BOX_CHARS.horizontal.repeat(innerWidth + 2) + 
+  const bottomBorder = BOX_CHARS.bottomLeft +
+    BOX_CHARS.horizontal.repeat(innerWidth + 2) +
     BOX_CHARS.bottomRight;
 
   console.log(bottomBorder);

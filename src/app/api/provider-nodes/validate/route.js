@@ -6,7 +6,7 @@ import { isLocalRequest } from "@/dashboardGuard";
 const fetchWithTimeout = (url, options, timeout = 10000) => {
   return Promise.race([
     fetch(url, options),
-    new Promise((_, reject) => 
+    new Promise((_, reject) =>
       setTimeout(() => reject(new Error("Request timeout")), timeout)
     )
   ]);
@@ -204,9 +204,9 @@ export async function POST(request) {
       code: error.cause?.code,
       userMessage: errorMessage
     });
-    return NextResponse.json({ 
+    return NextResponse.json({
       valid: false,
-      error: errorMessage 
+      error: errorMessage
     }, { status: 500 });
   }
 }

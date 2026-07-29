@@ -463,7 +463,7 @@ export class AntigravityExecutor extends BaseExecutor {
     // Rename tool names in conversation history (contents)
     const cloakedContents = body.request?.contents?.map(msg => {
       if (!msg.parts) return msg;
-      
+
       const cloakedParts = msg.parts.map(part => {
         // Rename functionCall.name
         if (part.functionCall && !AG_DEFAULT_TOOLS.has(part.functionCall.name)) {
@@ -475,7 +475,7 @@ export class AntigravityExecutor extends BaseExecutor {
             }
           };
         }
-        
+
         // Rename functionResponse.name
         if (part.functionResponse && !AG_DEFAULT_TOOLS.has(part.functionResponse.name)) {
           return {
@@ -486,10 +486,10 @@ export class AntigravityExecutor extends BaseExecutor {
             }
           };
         }
-        
+
         return part;
       });
-      
+
       return { ...msg, parts: cloakedParts };
     });
 

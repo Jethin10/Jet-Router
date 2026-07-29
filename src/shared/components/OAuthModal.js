@@ -431,7 +431,7 @@ export default function OAuthModal({ isOpen, provider, providerInfo, onSuccess, 
       const isLocalhost = event.origin.includes("localhost") || event.origin.includes("127.0.0.1");
       const isSameOrigin = event.origin === window.location.origin;
       if (!isLocalhost && !isSameOrigin) return;
-      
+
       if (event.data?.type === "oauth_callback") {
         handleCallback(event.data.data);
       }

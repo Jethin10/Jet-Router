@@ -208,12 +208,12 @@ export function encodeField(fieldNum, wireType, value) {
   }
 
   if (wireType === WIRE_TYPE.LEN) {
-    const dataBytes = typeof value === "string" 
+    const dataBytes = typeof value === "string"
       ? new TextEncoder().encode(value)
       : value instanceof Uint8Array ? value
       : Buffer.isBuffer(value) ? new Uint8Array(value)
       : new Uint8Array(0);
-    
+
     const lengthBytes = encodeVarint(dataBytes.length);
     return concatArrays(tagBytes, lengthBytes, dataBytes);
   }
@@ -538,12 +538,12 @@ export function encodeRequest(messages, modelName, tools = [], reasoningEffort =
   // Build request
   return concatArrays(
     // Messages
-    ...formattedMessages.map(fm => 
-      encodeField(FIELD.MESSAGES, WIRE_TYPE.LEN, 
+    ...formattedMessages.map(fm =>
+      encodeField(FIELD.MESSAGES, WIRE_TYPE.LEN,
         encodeMessage(fm.content, fm.role, fm.messageId, null, fm.isLast, fm.hasTools, fm.toolResults)
       )
     ),
-    
+
     // Static fields
     encodeField(FIELD.UNKNOWN_2, WIRE_TYPE.VARINT, 1),
     encodeField(FIELD.INSTRUCTION, WIRE_TYPE.LEN, encodeInstruction("")),
@@ -559,14 +559,14 @@ export function encodeRequest(messages, modelName, tools = [], reasoningEffort =
     // Tool-related fields
     encodeField(FIELD.IS_AGENTIC, WIRE_TYPE.VARINT, isAgentic ? 1 : 0),
     ...(isAgentic ? [encodeField(FIELD.SUPPORTED_TOOLS, WIRE_TYPE.LEN, encodeVarint(1))] : []),
-    
+
     // Message IDs
-    ...messageIds.map(mid => 
+    ...messageIds.map(mid =>
       encodeField(FIELD.MESSAGE_IDS, WIRE_TYPE.LEN, encodeMessageId(mid.messageId, mid.role))
     ),
 
     // MCP Tools
-    ...(tools?.length > 0 ? tools.map(tool => 
+    ...(tools?.length > 0 ? tools.map(tool =>
       encodeField(FIELD.MCP_TOOLS, WIRE_TYPE.LEN, encodeMcpTool(tool))
     ) : []),
 
@@ -648,10 +648,10 @@ export function wrapConnectRPCFrame(payload, compress = false) {
 
 export function generateCursorBody(messages, modelName, tools = [], reasoningEffort = null, forceAgentMode = false) {
   log("BODY", `Generating: ${messages.length} msgs, model=${modelName}, tools=${tools.length}, reasoning=${reasoningEffort || "none"}, forceAgentMode=${forceAgentMode}`);
-  
+
   const protobuf = buildChatRequest(messages, modelName, tools, reasoningEffort, forceAgentMode);
   const framed = wrapConnectRPCFrame(protobuf, false); // Cursor doesn't support compressed requests
-  
+
   log("BODY", `Protobuf=${protobuf.length}B, Framed=${framed.length}B`);
   return framed;
 }
@@ -779,14 +779,14 @@ function extractToolCall(toolCallData) {
   if (toolCall.has(FIELD.TOOL_MCP_PARAMS)) {
     try {
       const mcpParams = decodeMessage(toolCall.get(FIELD.TOOL_MCP_PARAMS)[0].value);
-      
+
       if (mcpParams.has(FIELD.MCP_TOOLS_LIST)) {
         const tool = decodeMessage(mcpParams.get(FIELD.MCP_TOOLS_LIST)[0].value);
-        
+
         if (tool.has(FIELD.MCP_NESTED_NAME)) {
           toolName = new TextDecoder().decode(tool.get(FIELD.MCP_NESTED_NAME)[0].value);
         }
-        
+
         if (tool.has(FIELD.MCP_NESTED_PARAMS)) {
           rawArgs = new TextDecoder().decode(tool.get(FIELD.MCP_NESTED_PARAMS)[0].value);
         }

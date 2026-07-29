@@ -164,7 +164,7 @@ function buildEventStreamFrame(eventType, payload) {
 /**
  * Safely stringify a tool-call input value.
  * OpenAI expects `function.arguments` to be a JSON string, never an object.
- * If 9router's Anthropic→OpenAI conversion passes the input as a pre-parsed object,
+ * If jet-router's Anthropic→OpenAI conversion passes the input as a pre-parsed object,
  * this prevents the "" + object → "[object Object]" corruption.
  */
 function safeArgsString(value) {
@@ -452,12 +452,12 @@ function emitFinish(state) {
  * Intercept Kiro IDE CodeWhisperer request and convert to EventStream response:
  *   1. Parse CodeWhisperer JSON body (reject binary EventStream formats)
  *   2. Convert CodeWhisperer format to OpenAI messages[] format
- *   3. Forward to 9router /v1/chat/completions (OpenAI SSE)
+ *   3. Forward to jet-router /v1/chat/completions (OpenAI SSE)
  *   4. Convert OpenAI SSE response → AWS EventStream binary frames
  *   5. Stream EventStream frames back to Kiro IDE
- * 
+ *
  * @param {http.IncomingMessage} req - HTTP request from Kiro IDE
- * @param {http.ServerResponse} res - HTTP response to Kiro IDE  
+ * @param {http.ServerResponse} res - HTTP response to Kiro IDE
  * @param {Buffer} bodyBuffer - Request body buffer
  * @param {string} mappedModel - Model name after MITM alias mapping
  */
@@ -469,7 +469,7 @@ async function intercept(req, res, bodyBuffer, mappedModel) {
       // that don't contain model info - pass them through directly to avoid JSON.parse crash
       throw new Error(`Binary EventStream format detected (${bodyBuffer.length}B) - request should use passthrough instead of intercept`);
     }
-    
+
     const body = JSON.parse(bodyBuffer.toString());
 
     // 1 + 2: CodeWhisperer → OpenAI messages + tools
@@ -488,7 +488,7 @@ async function intercept(req, res, bodyBuffer, mappedModel) {
       ...(tools.length > 0 && { tools, tool_choice: "auto" }),
     };
 
-    // 3: Forward to 9router
+    // 3: Forward to jet-router
     const routerRes = await fetchRouter(openaiBody, "/v1/chat/completions", req.headers);
 
     // 4 + 5: Re-encode response as AWS EventStream binary using standard pipeline
@@ -500,12 +500,12 @@ async function intercept(req, res, bodyBuffer, mappedModel) {
     if (!res.headersSent) {
       res.writeHead(500, { "Content-Type": "application/json" });
     }
-    res.end(JSON.stringify({ 
-      error: { 
-        message: error.message, 
+    res.end(JSON.stringify({
+      error: {
+        message: error.message,
         type: "mitm_error",
         handler: "kiro"
-      } 
+      }
     }));
   }
 }
@@ -513,7 +513,7 @@ async function intercept(req, res, bodyBuffer, mappedModel) {
 // Detect AWS EventStream binary format
 function isBinaryEventStream(buffer) {
   if (!buffer || buffer.length < 12) return false;
-  // AWS EventStream signature: 
+  // AWS EventStream signature:
   // - First 4 bytes: total frame length (big-endian)
   // - Bytes 4-8: headers length (big-endian)
   // - Typical frame length: 100-10000 bytes

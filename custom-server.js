@@ -19,11 +19,11 @@ http.createServer = (...args) => {
     // Direct/public sockets remain keyed by the unspoofable peer address.
     const proxyIp = xRealIp || (xff ? String(xff).split(",")[0].trim() : "");
     const ip = isLoopbackProxy && proxyIp ? proxyIp : socketIp;
-    delete req.headers["x-9r-real-ip"];
+    delete req.headers["x-jr-real-ip"];
     delete req.headers["x-forwarded-for"];
-    delete req.headers["x-9r-via-proxy"];
-    req.headers["x-9r-real-ip"] = ip;
-    if (viaProxy) req.headers["x-9r-via-proxy"] = "1";
+    delete req.headers["x-jr-via-proxy"];
+    req.headers["x-jr-real-ip"] = ip;
+    if (viaProxy) req.headers["x-jr-via-proxy"] = "1";
     return handler(req, res);
   };
   return origCreate(...rest, wrapped);

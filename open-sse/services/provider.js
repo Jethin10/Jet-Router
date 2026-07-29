@@ -62,11 +62,11 @@ export function detectFormat(body) {
   // Claude requires content to be array with specific structure
   if (body.messages && Array.isArray(body.messages)) {
     const firstMsg = body.messages[0];
-    
+
     // If content is array, check if it follows Claude structure
     if (firstMsg?.content && Array.isArray(firstMsg.content)) {
       const firstContent = firstMsg.content[0];
-      
+
       // Claude format has specific types: text, image, tool_use, tool_result
       // OpenAI multimodal has: text, image_url (note the difference)
       if (firstContent?.type === "text" && !body.model?.includes("/")) {
@@ -76,23 +76,23 @@ export function detectFormat(body) {
           return "claude";
         }
         // Check if image format is Claude (source.type) vs OpenAI (image_url.url)
-        const hasClaudeImage = firstMsg.content.some(c => 
+        const hasClaudeImage = firstMsg.content.some(c =>
           c.type === "image" && c.source?.type === "base64"
         );
-        const hasOpenAIImage = firstMsg.content.some(c => 
+        const hasOpenAIImage = firstMsg.content.some(c =>
           c.type === "image_url" && c.image_url?.url
         );
         if (hasClaudeImage) return "claude";
         if (hasOpenAIImage) return "openai";
-        
+
         // If still unclear, check for tool format
-        const hasClaudeTool = firstMsg.content.some(c => 
+        const hasClaudeTool = firstMsg.content.some(c =>
           c.type === "tool_use" || c.type === "tool_result"
         );
         if (hasClaudeTool) return "claude";
       }
     }
-    
+
     // If content is string, it's likely OpenAI (Claude also supports this)
     // Check for other Claude-specific indicators
     if (body.system !== undefined || body.anthropic_version) {

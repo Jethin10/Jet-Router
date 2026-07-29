@@ -34,7 +34,7 @@ export function ollamaToOpenAIResponse(chunk, state) {
   // Final chunk with done=true
   if (chunk.done) {
     const usage = extractUsage(chunk);
-    
+
     // Determine finish_reason: map upstream done_reason, override to tool_calls if tools used
     let finishReason = toOpenAIFinish(chunk.done_reason, "ollama");
     if (chunk.done_reason === OPENAI_FINISH.TOOL_CALLS || state.hadToolCalls) {
@@ -68,7 +68,7 @@ export function ollamaToOpenAIResponse(chunk, state) {
   const delta = {};
   if (content) delta.content = content;
   if (thinking) delta.reasoning_content = thinking;
-  
+
   // Convert Ollama tool_calls to OpenAI format
   if (toolCalls) {
     state.hadToolCalls = true;

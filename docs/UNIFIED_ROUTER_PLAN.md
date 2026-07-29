@@ -21,7 +21,7 @@ provider and retries another account when the first one is unavailable.
    A request may optionally pin an account with `x-connection-id`; normal
    failover resumes if the pinned account is unavailable.
 5. The request stays in its native wire format when the upstream supports it;
-   otherwise 9Router translates it.
+   otherwise Jet Router translates it.
 6. Authentication, quota, rate-limit, missing-model, and transient failures
    lock only that account/model pair before the next account is tried.
 7. The response is translated back to the client's original format.

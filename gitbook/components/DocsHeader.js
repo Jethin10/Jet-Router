@@ -55,7 +55,7 @@ export default function DocsHeader({ lang = DEFAULT_LANG }) {
             className="mobile-menu-overlay lg:hidden"
             onClick={() => setMobileMenuOpen(false)}
           />
-          
+
           <div className="mobile-menu-drawer lg:hidden">
             <div className="flex items-center justify-between p-4 border-b border-gray-200">
               <span className="font-bold text-lg text-black">

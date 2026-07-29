@@ -63,7 +63,7 @@ function resolveBundledServerPath() {
 }
 
 // Copy bundled server.js into DATA_DIR so MITM doesn't lock node_modules
-// (prevents EBUSY on `npm i -g 9router@latest` while MITM is running).
+// (prevents EBUSY on `npm i -g jet-router@latest` while MITM is running).
 function ensureRuntimeServer(bundledPath) {
   try {
     if (!bundledPath || !fs.existsSync(bundledPath)) return bundledPath;
@@ -95,7 +95,7 @@ function ensureRuntimeServer(bundledPath) {
 
 const SERVER_PATH = ensureRuntimeServer(resolveBundledServerPath());
 const ENCRYPT_ALGO = "aes-256-gcm";
-const ENCRYPT_SALT = "9router-mitm-pwd";
+const ENCRYPT_SALT = "jet-router-mitm-pwd";
 
 function getProcessUsingPort443() {
   try {
@@ -288,7 +288,7 @@ function getPort443Owner(sudoPassword) {
     if (IS_WIN) {
       const psCmd = `powershell -NonInteractive -WindowStyle Hidden -Command "` +
         `$c = Get-NetTCPConnection -LocalPort 443 -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1; ` +
-        `if ($c) { $c.OwningProcess } else { 0 }"`;    
+        `if ($c) { $c.OwningProcess } else { 0 }"`;
       exec(psCmd, { windowsHide: true }, (err, stdout) => {
         if (err) return resolve(null);
         const pid = parseInt(stdout.trim(), 10);
@@ -578,7 +578,7 @@ async function startServer(apiKey, sudoPassword, forceKillPort443 = false) {
     log(`[MITM] server.js missing at ${effectiveServerPath} → recopying`);
     effectiveServerPath = ensureRuntimeServer(resolveBundledServerPath());
     if (!effectiveServerPath || !fs.existsSync(effectiveServerPath)) {
-      throw new Error(`MITM server.js not found at ${effectiveServerPath}. Reinstall 9router.`);
+      throw new Error(`MITM server.js not found at ${effectiveServerPath}. Reinstall jet-router.`);
     }
   }
   const mitmRouterBase = await resolveMitmRouterBaseUrl();

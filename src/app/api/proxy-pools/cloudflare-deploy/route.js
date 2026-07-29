@@ -7,7 +7,7 @@ export default {
   async fetch(request, env, ctx) {
     const target = request.headers.get("x-relay-target");
     const relayPath = request.headers.get("x-relay-path") || "/";
-    
+
     if (!target) {
       return new Response(JSON.stringify({ error: "Missing x-relay-target header" }), {
         status: 400,
@@ -60,7 +60,7 @@ export async function POST(request) {
 
     // 1. Upload Worker Script
     const workerScriptUrl = `https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${projectName}`;
-    
+
     // Cloudflare requires multipart/form-data for worker script upload
     const formData = new FormData();
     formData.append("index.js", new Blob([RELAY_WORKER_CODE], { type: "application/javascript+module" }), "index.js");

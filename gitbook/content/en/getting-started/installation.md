@@ -1,6 +1,6 @@
 # Installation
 
-Detailed installation guide for 9Router with troubleshooting tips.
+Detailed installation guide for Jet Router with troubleshooting tips.
 
 ---
 
@@ -31,37 +31,37 @@ npm --version
 
 ### Method 1: Global Installation (Recommended)
 
-Install 9Router globally to use from anywhere:
+Install Jet Router globally to use from anywhere:
 
 ```bash
-npm install -g 9router
+npm install -g jet-router
 ```
 
-**Start 9Router:**
+**Start Jet Router:**
 
 ```bash
-9router
+jet-router
 ```
 
 **Benefits:**
 - ✅ Run from any directory
-- ✅ Simple command: `9router`
-- ✅ Auto-updates with `npm update -g 9router`
+- ✅ Simple command: `jet-router`
+- ✅ Auto-updates with `npm update -g jet-router`
 
 ### Method 2: Local Installation
 
 Install in a specific project:
 
 ```bash
-mkdir my-9router
-cd my-9router
-npm install 9router
+mkdir my-jet-router
+cd my-jet-router
+npm install jet-router
 ```
 
-**Start 9Router:**
+**Start Jet Router:**
 
 ```bash
-npx 9router
+npx jet-router
 ```
 
 **Benefits:**
@@ -74,8 +74,8 @@ npx 9router
 Clone and build from GitHub:
 
 ```bash
-git clone https://github.com/decolua/9router.git
-cd 9router/app
+git clone https://github.com/Jethin10/Jet-Router.git
+cd jet-router/app
 npm install
 npm run build
 npm start
@@ -93,13 +93,13 @@ npm start
 ### Start the Server
 
 ```bash
-9router
+jet-router
 ```
 
 **What happens:**
 1. Server starts on `http://localhost:20128`
 2. Dashboard opens automatically in browser
-3. Data directory created at `~/.9router`
+3. Data directory created at `~/.jet-router`
 4. API key generated automatically
 
 ### Dashboard Login
@@ -193,7 +193,7 @@ export JWT_SECRET="your-secure-secret-change-this"
 export INITIAL_PASSWORD="your-password"
 
 # Storage
-export DATA_DIR="~/.9router"
+export DATA_DIR="~/.jet-router"
 
 # Server
 export PORT="20128"
@@ -205,11 +205,11 @@ export ENABLE_REQUEST_LOGS="false"
 
 ### Data Directory
 
-**Default location:** `~/.9router`
+**Default location:** `~/.jet-router`
 
 **Contents:**
 ```
-~/.9router/
+~/.jet-router/
   ├── db.json           # Database (providers, combos, usage)
   ├── api-keys.json     # API keys
   └── logs/             # Request logs (if enabled)
@@ -219,7 +219,7 @@ export ENABLE_REQUEST_LOGS="false"
 
 ```bash
 export DATA_DIR="/custom/path"
-9router
+jet-router
 ```
 
 ### Port Configuration
@@ -230,13 +230,13 @@ export DATA_DIR="/custom/path"
 
 ```bash
 export PORT="3000"
-9router
+jet-router
 ```
 
 **Or use command line:**
 
 ```bash
-9router --port 3000
+jet-router --port 3000
 ```
 
 ---
@@ -263,14 +263,14 @@ kill -9 <PID>
 **Solution 2: Use different port**
 
 ```bash
-9router --port 3000
+jet-router --port 3000
 ```
 
 ### Permission Denied
 
 **Error:**
 ```
-Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/9router'
+Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/jet-router'
 ```
 
 **Solution: Use sudo (not recommended) or fix npm permissions**
@@ -283,7 +283,7 @@ echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
 # Then install again
-npm install -g 9router
+npm install -g jet-router
 ```
 
 ### Node.js Version Too Old
@@ -345,23 +345,23 @@ Dashboard → Provider → Disconnect → Reconnect
 
 ### High Memory Usage
 
-**Issue:** 9Router using too much RAM
+**Issue:** Jet Router using too much RAM
 
 **Solution: Restart server**
 
 ```bash
 # Stop
-pkill -f 9router
+pkill -f jet-router
 
 # Start
-9router
+jet-router
 ```
 
 **Or use PM2 for auto-restart:**
 
 ```bash
 npm install -g pm2
-pm2 start 9router --name 9router
+pm2 start jet-router --name jet-router
 pm2 save
 ```
 
@@ -372,8 +372,8 @@ pm2 save
 ### Local Development
 
 ```bash
-npm install -g 9router
-9router
+npm install -g jet-router
+jet-router
 ```
 
 **Use case:** Personal coding, testing
@@ -382,7 +382,7 @@ npm install -g 9router
 
 ```bash
 # Install
-npm install -g 9router
+npm install -g jet-router
 
 # Configure
 export JWT_SECRET="your-secure-secret"
@@ -391,7 +391,7 @@ export NODE_ENV="production"
 
 # Start with PM2
 npm install -g pm2
-pm2 start 9router --name 9router
+pm2 start jet-router --name jet-router
 pm2 save
 pm2 startup
 ```
@@ -401,15 +401,15 @@ pm2 startup
 ### Docker
 
 ```bash
-docker pull 9router/9router:latest
+docker pull jet-router/jet-router:latest
 
 docker run -d \
   -p 20128:20128 \
   -e JWT_SECRET="your-secure-secret" \
   -e INITIAL_PASSWORD="your-password" \
-  -v 9router-data:/root/.9router \
-  --name 9router \
-  9router/9router:latest
+  -v jet-router-data:/root/.jet-router \
+  --name jet-router \
+  jet-router/jet-router:latest
 ```
 
 **Use case:** Containerized deployment, Kubernetes
@@ -427,7 +427,7 @@ server {
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
-        
+
         # SSE support for streaming
         proxy_buffering off;
         proxy_read_timeout 86400;
@@ -444,13 +444,13 @@ server {
 ### Remove Global Installation
 
 ```bash
-npm uninstall -g 9router
+npm uninstall -g jet-router
 ```
 
 ### Remove Data Directory
 
 ```bash
-rm -rf ~/.9router
+rm -rf ~/.jet-router
 ```
 
 ### Remove Configuration
@@ -458,7 +458,7 @@ rm -rf ~/.9router
 ```bash
 # Remove environment variables from shell config
 nano ~/.bashrc  # or ~/.zshrc
-# Delete 9router-related exports
+# Delete jet-router-related exports
 ```
 
 ---
@@ -473,6 +473,6 @@ nano ~/.bashrc  # or ~/.zshrc
 
 ## Need Help?
 
-- **Website**: [9router.com](https://9router.com)
-- **GitHub**: [github.com/decolua/9router](https://github.com/decolua/9router)
-- **Issues**: [github.com/decolua/9router/issues](https://github.com/decolua/9router/issues)
+- **Website**: [your Jet Router deployment](https://router.example.com)
+- **GitHub**: [github.com/Jethin10/Jet-Router](https://github.com/Jethin10/Jet-Router)
+- **Issues**: [github.com/Jethin10/Jet-Router/issues](https://github.com/Jethin10/Jet-Router/issues)

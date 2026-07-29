@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Common issues and solutions when using 9Router.
+Common issues and solutions when using Jet Router.
 
 ---
 
@@ -78,7 +78,7 @@ Common issues and solutions when using 9Router.
 **Solutions:**
 
 1. **Auto-refresh (default):**
-   9Router automatically refreshes tokens. Wait 30 seconds and retry.
+   Jet Router automatically refreshes tokens. Wait 30 seconds and retry.
 
 2. **Manual reconnect:**
    ```
@@ -135,15 +135,15 @@ Common issues and solutions when using 9Router.
 **Problem:** "ECONNREFUSED" or "Cannot connect to localhost:20128".
 
 **Causes:**
-- 9Router not running
+- Jet Router not running
 - Port 20128 blocked
 - Firewall blocking connection
 
 **Solutions:**
 
-1. **Start 9Router:**
+1. **Start Jet Router:**
    ```bash
-   9router
+   jet-router
    ```
    Dashboard should open at http://localhost:3000
 
@@ -151,7 +151,7 @@ Common issues and solutions when using 9Router.
    ```bash
    # Check if port is listening
    lsof -i :20128
-   
+
    # Or on Windows
    netstat -ano | findstr :20128
    ```
@@ -164,7 +164,7 @@ Common issues and solutions when using 9Router.
 4. **Use cloud endpoint:**
    If localhost doesn't work (e.g., Cursor IDE):
    ```
-   Endpoint: https://9router.com/v1
+   Endpoint: https://router.example.com/v1
    ```
 
 ---
@@ -175,16 +175,16 @@ Common issues and solutions when using 9Router.
 
 **Causes:**
 - Port 3000 already in use
-- 9Router crashed
+- Jet Router crashed
 - Browser cache issues
 
 **Solutions:**
 
-1. **Check if 9Router is running:**
+1. **Check if Jet Router is running:**
    ```bash
    # Check process
-   ps aux | grep 9router
-   
+   ps aux | grep jet-router
+
    # Check port 3000
    lsof -i :3000
    ```
@@ -193,19 +193,19 @@ Common issues and solutions when using 9Router.
    ```bash
    # macOS/Linux
    lsof -ti:3000 | xargs kill -9
-   
+
    # Windows
    netstat -ano | findstr :3000
    taskkill /PID <PID> /F
    ```
 
-3. **Restart 9Router:**
+3. **Restart Jet Router:**
    ```bash
    # Stop
-   pkill -f 9router
-   
+   pkill -f jet-router
+
    # Start
-   9router
+   jet-router
    ```
 
 4. **Clear browser cache:**
@@ -237,7 +237,7 @@ Common issues and solutions when using 9Router.
    ```
    Correct: cc/claude-opus-4-5-20251101
    Wrong: claude-opus-4-5-20251101
-   
+
    Format: [provider-prefix]/[model-name]
    ```
 
@@ -328,10 +328,10 @@ Common issues and solutions when using 9Router.
    ```bash
    # Cursor
    Settings → Models → OpenAI API Key
-   
+
    # Cline
    Settings → API Key
-   
+
    # Environment variable
    export OPENAI_API_KEY="9r_your_key"
    ```
@@ -346,6 +346,6 @@ Common issues and solutions when using 9Router.
 
 ## Need More Help?
 
-- **GitHub Issues:** [github.com/decolua/9router/issues](https://github.com/decolua/9router/issues)
-- **Documentation:** [9router.com/docs](https://9router.com/docs)
+- **GitHub Issues:** [github.com/Jethin10/Jet-Router/issues](https://github.com/Jethin10/Jet-Router/issues)
+- **Documentation:** [Jet Router docs](https://router.example.com/docs)
 - **FAQ:** [faq.md](faq.md)

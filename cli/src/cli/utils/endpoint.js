@@ -14,7 +14,7 @@ async function getEndpoint(port) {
   const result = await api.getTunnelStatus();
   const tunnelEnabled = result.success && result.data?.enabled === true;
   const publicUrl = result.success ? result.data?.publicUrl : "";
-  
+
   const endpoint = tunnelEnabled && publicUrl ? `${publicUrl}/v1` : `http://localhost:${port}/v1`;
   return { endpoint, tunnelEnabled };
 }

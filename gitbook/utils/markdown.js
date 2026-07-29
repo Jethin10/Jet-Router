@@ -5,7 +5,7 @@ import rehypeSlug from "rehype-slug";
 import { BookOpen, Rocket, Terminal, Monitor, FolderOpen, HelpCircle, MessageCircle, Mouse, Folder, Lock, Zap, Smartphone, Lightbulb, AlertTriangle, CheckCircle, ArrowRight, Layers, Plug, Cloud, Wallet, Gift, GitBranch, BarChart3, Code2, Sparkles, Server, PartyPopper, Siren, Link2, Target, Heart, Check, Home, Package, Wrench, OctagonX, Search, Globe, Container } from "lucide-react";
 
 const PAGE_ICONS = {
-  "Welcome to 9Router": BookOpen,
+  "Welcome to Jet Router": BookOpen,
   "Introduction": BookOpen,
   "Getting Started": Rocket,
   "Quick Start": Rocket,
@@ -140,7 +140,7 @@ export function MarkdownRenderer({ content }) {
           const text = children?.toString() || "";
           const IconComponent = PAGE_ICONS[text];
           const id = slugify(text);
-          
+
           return (
             <h1 id={id} {...props}>
               {IconComponent && <IconComponent className="inline-block mr-3" />}
@@ -158,15 +158,15 @@ export function MarkdownRenderer({ content }) {
             if (child?.props?.children) return extractText(child.props.children);
             return '';
           };
-          
+
           const text = extractText(children);
           const iconMatch = text.match(/^\[icon:([a-z-]+)\]\s*(.*)$/);
-          
+
           if (iconMatch) {
             const iconName = iconMatch[1];
             const restText = iconMatch[2];
             const IconComponent = ICON_MAP[iconName];
-            
+
             return (
               <li {...props}>
                 {IconComponent && <IconComponent className="inline-block mr-2 w-4 h-4 text-[#E68A6E]" />}
@@ -187,7 +187,7 @@ export function MarkdownRenderer({ content }) {
               </li>
             );
           }
-          
+
           return <li {...props}>{children}</li>;
         },
       }}
@@ -206,7 +206,7 @@ export function extractHeadings(content) {
     const level = match[1].length;
     const text = match[2].replace(EMOJI_REGEX, "").trim();
     const id = slugify(text);
-    
+
     headings.push({
       level,
       text,

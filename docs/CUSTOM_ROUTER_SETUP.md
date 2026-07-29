@@ -1,6 +1,6 @@
 # Unified Router Setup
 
-This fork keeps 9Router's local dashboard and adds AgentRouter as a first-class
+This fork keeps Jet Router's local dashboard and adds AgentRouter as a first-class
 provider. One local API key can authorize OpenAI-compatible, Anthropic-compatible,
 and Responses API clients while upstream credentials remain stored only in the
 router.
@@ -42,7 +42,7 @@ Use:
 
 ```text
 Base URL: http://localhost:20128/v1
-API key:  <local key created in 9Router>
+API key:  <local key created in Jet Router>
 Model:    agentrouter/<model-id>
 ```
 
@@ -66,7 +66,7 @@ Use this shape in Claude Code's `~/.claude/settings.json`:
   "hasCompletedOnboarding": true,
   "env": {
     "ANTHROPIC_BASE_URL": "http://localhost:20128/v1",
-    "ANTHROPIC_AUTH_TOKEN": "<local key created in 9Router>",
+    "ANTHROPIC_AUTH_TOKEN": "<local key created in Jet Router>",
     "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
   }
 }
@@ -82,10 +82,10 @@ Use `~/.codex/config.toml`:
 
 ```toml
 model = "agentrouter/<model-id>"
-model_provider = "9router"
+model_provider = "jet-router"
 
-[model_providers.9router]
-name = "9Router"
+[model_providers.jet-router]
+name = "Jet Router"
 base_url = "http://localhost:20128/v1"
 wire_api = "responses"
 ```
@@ -95,7 +95,7 @@ And `~/.codex/auth.json`:
 ```json
 {
   "auth_mode": "apikey",
-  "OPENAI_API_KEY": "<local key created in 9Router>"
+  "OPENAI_API_KEY": "<local key created in Jet Router>"
 }
 ```
 
@@ -113,7 +113,7 @@ that client's own configuration.
 - Never give a harness an upstream provider token; give it only a local router
   key.
 - Google OAuth application credentials are not embedded in this fork. Set the
-  four optional `NINEROUTER_*_CLIENT_ID`/`CLIENT_SECRET` variables shown in
+  four optional `JET_ROUTER_*_CLIENT_ID`/`CLIENT_SECRET` variables shown in
   `.env.example` only if you enable Antigravity or Gemini OAuth login.
 - Do not expose port 20128 publicly without required local-key authentication,
   TLS, and network access controls.

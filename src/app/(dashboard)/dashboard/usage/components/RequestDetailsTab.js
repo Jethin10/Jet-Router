@@ -53,10 +53,10 @@ function getProviderName(providerId, cache) {
 
 function CollapsibleSection({ title, children, defaultOpen = false, icon = null }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
-  
+
   return (
     <div className="border border-black/5 dark:border-white/5 rounded-lg overflow-hidden">
-      <button 
+      <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between p-3 bg-black/[0.02] dark:bg-white/[0.02] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-colors"
@@ -72,7 +72,7 @@ function CollapsibleSection({ title, children, defaultOpen = false, icon = null 
           chevron_right
         </span>
       </button>
-      
+
       {isOpen && (
         <div className="p-4 border-t border-black/5 dark:border-white/5">
           {children}
@@ -204,7 +204,7 @@ export default function RequestDetailsTab() {
               ))}
             </select>
           </div>
-          
+
           <div className="flex min-w-0 flex-col gap-2">
             <label htmlFor="start-date-filter" className="text-sm font-medium text-text-main">Start Date</label>
             <input
@@ -232,11 +232,11 @@ export default function RequestDetailsTab() {
               )}
             />
           </div>
-          
+
           <div className="flex min-w-0 flex-col gap-2 sm:col-span-2 lg:col-span-1">
             <span className="hidden text-sm font-medium text-text-main opacity-0 lg:block" aria-hidden="true">Clear</span>
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               onClick={handleClearFilters}
               disabled={!filters.provider && !filters.startDate && !filters.endDate}
               className="w-full"
@@ -480,7 +480,7 @@ export default function RequestDetailsTab() {
                   </pre>
                 </CollapsibleSection>
               )}
-              
+
               <CollapsibleSection title="4. Client Response (Final)" defaultOpen={true} icon="output">
                 {selectedDetail.response?.thinking && (
                   <div className="mb-4">
@@ -493,7 +493,7 @@ export default function RequestDetailsTab() {
                     </pre>
                   </div>
                 )}
-                
+
                 <h4 className="font-semibold text-text-main mb-2 text-xs uppercase tracking-wide opacity-70">
                   Content
                 </h4>

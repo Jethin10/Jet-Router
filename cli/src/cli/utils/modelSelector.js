@@ -11,7 +11,7 @@ const PROVIDER_ALIAS_ORDER = [
 // Alias to display name mapping
 const PROVIDER_ALIAS_NAMES = {
   cc: "Claude Code",
-  ag: "Antigravity", 
+  ag: "Antigravity",
   cx: "OpenAI Codex",
   if: "iFlow AI",
   qw: "Qwen Code",
@@ -34,11 +34,11 @@ const PROVIDER_ALIAS_NAMES = {
 async function getAvailableModelsGrouped() {
   const result = await api.getAvailableModels();
   if (!result.success) return { combos: [], groups: {} };
-  
+
   const models = result.data?.data || [];
   const combos = [];
   const groups = {};
-  
+
   models.forEach(m => {
     if (m.owned_by === "combo") {
       combos.push(m.id);
@@ -50,7 +50,7 @@ async function getAvailableModelsGrouped() {
       groups[provider].push(m.id);
     }
   });
-  
+
   return { combos, groups };
 }
 
@@ -70,10 +70,10 @@ async function selectModelFromList(title, currentValue = "", options = {}) {
   if (totalModels === 0) {
     return null;
   }
-  
+
   // Build flat list for selection
   const allModels = [];
-  
+
   // Display
   clearScreen();
   console.log(`\n🎯 ${title}`);
@@ -83,9 +83,9 @@ async function selectModelFromList(title, currentValue = "", options = {}) {
   } else {
     console.log();
   }
-  
+
   let idx = 1;
-  
+
   // Combos first (skipped when excludeCombos is true)
   if (combos.length > 0) {
     console.log("[Combos]");
@@ -96,14 +96,14 @@ async function selectModelFromList(title, currentValue = "", options = {}) {
     });
     console.log();
   }
-  
+
   // Provider groups in order (by alias)
   const sortedProviders = Object.keys(groups).sort((a, b) => {
     const idxA = PROVIDER_ALIAS_ORDER.indexOf(a);
     const idxB = PROVIDER_ALIAS_ORDER.indexOf(b);
     return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
   });
-  
+
   sortedProviders.forEach(provider => {
     const providerName = PROVIDER_ALIAS_NAMES[provider] || provider;
     console.log(`[${providerName}]`);
@@ -114,17 +114,17 @@ async function selectModelFromList(title, currentValue = "", options = {}) {
     });
     console.log();
   });
-  
+
   console.log("  0. Cancel\n");
-  
+
   // Prompt for number input
   const input = await prompt("Enter number: ");
   const num = parseInt(input, 10);
-  
+
   if (isNaN(num) || num === 0 || num < 0 || num > allModels.length) {
     return null;
   }
-  
+
   return allModels[num - 1];
 }
 
