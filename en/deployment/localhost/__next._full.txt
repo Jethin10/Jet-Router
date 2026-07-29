@@ -1,0 +1,182 @@
+1:"$Sreact.fragment"
+2:I[39756,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+3:I[37457,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+5:I[97367,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+6:"$Sreact.suspense"
+9:I[97367,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"ViewportBoundary"]
+b:I[97367,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"MetadataBoundary"]
+d:I[68027,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"default",1]
+:HL["/_next/static/chunks/0zq1af3eajaxe.css","style"]
+0:{"P":null,"c":["","en","deployment","localhost",""],"q":"","i":false,"f":[[["",{"children":[["lang","en","d",null],{"children":[["slug","deployment/localhost","c",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0zq1af3eajaxe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/05-c3ty_6dwfk.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2im7c515bo69p.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","link",null,{"rel":"preconnect","href":"https://fonts.googleapis.com"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.gstatic.com","crossOrigin":"anonymous"}]]}],["$","body",null,{"className":"bg-[#FCFBF9] text-[#6B7280]","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L4",[["$","script","script-0",{"src":"/_next/static/chunks/1whrehngmait9.js","async":true,"nonce":"$undefined"}]],["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]]}],{},null,false,null]},null,false,"$@8"]},null,false,"$@8"]},null,false,null],["$","$1","h",{"children":[null,["$","$L9",null,{"children":"$La"}],["$","div",null,{"hidden":true,"children":["$","$Lb",null,{"children":["$","$6",null,{"name":"Next.Metadata","children":"$Lc"}]}]}],null]}],false]],"m":"$undefined","G":["$d",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0zq1af3eajaxe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"OmBjh8Me7uNLcrz86_CJS"}
+e:[]
+8:"$We"
+f:I[81956,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/1whrehngmait9.js"],"default"]
+10:I[22982,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/1whrehngmait9.js"],"default"]
+11:Tad7,# 🏠 Localhost Deployment
+
+Run Jet Router on your local machine for development and personal use.
+
+---
+
+## 📦 Installation
+
+Install Jet Router globally via npm:
+
+```bash
+npm install -g jet-router
+```
+
+**Requirements:**
+- Node.js 20 or higher
+- npm 9 or higher
+
+---
+
+## 🚀 Starting the Server
+
+Start Jet Router with a single command:
+
+```bash
+jet-router
+```
+
+The dashboard will automatically open in your browser at `http://localhost:3000`
+
+**Default Configuration:**
+- **Dashboard**: `http://localhost:3000`
+- **API Endpoint**: `http://localhost:20128/v1`
+- **Data Directory**: `~/.jet-router`
+
+---
+
+## 🔧 Configuration
+
+### Custom Data Directory
+
+Set a custom data directory using environment variable:
+
+```bash
+DATA_DIR=/path/to/data jet-router
+```
+
+### Custom Port
+
+The API port (20128) and dashboard port (3000) are configured in the application. To change them, you'll need to modify the source code or use environment variables if supported.
+
+---
+
+## 🛑 Stopping the Server
+
+Press `Ctrl+C` in the terminal where Jet Router is running.
+
+```bash
+# In the terminal running jet-router
+^C  # Press Ctrl+C
+```
+
+The server will gracefully shut down and save all data.
+
+---
+
+## 🔄 Restarting the Server
+
+Simply run the start command again:
+
+```bash
+jet-router
+```
+
+All your configurations, API keys, and combos are preserved in the data directory.
+
+---
+
+## 📊 Updating Jet Router
+
+Update to the latest version:
+
+```bash
+npm update -g jet-router
+```
+
+Check your current version:
+
+```bash
+npm list -g jet-router
+```
+
+---
+
+## 🔍 Troubleshooting
+
+### Port Already in Use
+
+If port 20128 or 3000 is already in use:
+
+```bash
+# Find process using the port (macOS/Linux)
+lsof -i :20128
+lsof -i :3000
+
+# Kill the process
+kill -9 <PID>
+```
+
+### Permission Errors
+
+If you encounter permission errors during installation:
+
+```bash
+# Use sudo (not recommended)
+sudo npm install -g jet-router
+
+# Or fix npm permissions (recommended)
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+```
+
+### Data Directory Issues
+
+If the data directory is not accessible:
+
+```bash
+# Check permissions
+ls -la ~/.jet-router
+
+# Fix permissions
+chmod 755 ~/.jet-router
+```
+
+---
+
+## 📁 Data Directory Structure
+
+```
+~/.jet-router/
+├── db.json           # Main database (providers, combos, settings)
+├── logs/             # Application logs
+└── cache/            # Temporary cache files
+```
+
+**Backup Your Data:**
+
+```bash
+# Backup
+cp -r ~/.jet-router ~/.jet-router.backup
+
+# Restore
+cp -r ~/.jet-router.backup ~/.jet-router
+```
+
+---
+
+## 🔗 Next Steps
+
+- [Connect Providers](/providers/subscription.md)
+- [Create Combos](/features/combos.md)
+- [Integrate with CLI Tools](/integration/cursor.md)
+4:["$","$Lf",null,{"headings":[{"level":2,"text":"Installation","id":"installation"},{"level":2,"text":"Starting the Server","id":"starting-the-server"},{"level":2,"text":"Configuration","id":"configuration"},{"level":3,"text":"Custom Data Directory","id":"custom-data-directory"},{"level":3,"text":"Custom Port","id":"custom-port"},{"level":2,"text":"Stopping the Server","id":"stopping-the-server"},{"level":2,"text":"Restarting the Server","id":"restarting-the-server"},{"level":2,"text":"Updating Jet Router","id":"updating-jet-router"},{"level":2,"text":"Troubleshooting","id":"troubleshooting"},{"level":3,"text":"Port Already in Use","id":"port-already-in-use"},{"level":3,"text":"Permission Errors","id":"permission-errors"},{"level":3,"text":"Data Directory Issues","id":"data-directory-issues"},{"level":2,"text":"Data Directory Structure","id":"data-directory-structure"},{"level":2,"text":"Next Steps","id":"next-steps"}],"lang":"en","children":["$","$L10",null,{"content":"$11"}]}]
+a:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+7:null
+c:[["$","title","0",{"children":"Jet Router Documentation"}],["$","meta","1",{"name":"description","content":"Smart AI model router - Maximize subscriptions, minimize costs"}]]

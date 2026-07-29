@@ -1,0 +1,145 @@
+1:"$Sreact.fragment"
+2:I[39756,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+3:I[37457,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"default"]
+5:I[97367,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"OutletBoundary"]
+6:"$Sreact.suspense"
+9:I[97367,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"ViewportBoundary"]
+b:I[97367,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"MetadataBoundary"]
+d:I[68027,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js"],"default",1]
+:HL["/_next/static/chunks/0zq1af3eajaxe.css","style"]
+0:{"P":null,"c":["","vi","integration","roo",""],"q":"","i":false,"f":[[["",{"children":[["lang","vi","d",null],{"children":[["slug","integration/roo","c",null],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0zq1af3eajaxe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/05-c3ty_6dwfk.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/2im7c515bo69p.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","link",null,{"rel":"preconnect","href":"https://fonts.googleapis.com"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.gstatic.com","crossOrigin":"anonymous"}]]}],["$","body",null,{"className":"bg-[#FCFBF9] text-[#6B7280]","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L4",[["$","script","script-0",{"src":"/_next/static/chunks/1whrehngmait9.js","async":true,"nonce":"$undefined"}]],["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]]}],{},null,false,null]},null,false,"$@8"]},null,false,"$@8"]},null,false,null],["$","$1","h",{"children":[null,["$","$L9",null,{"children":"$La"}],["$","div",null,{"hidden":true,"children":["$","$Lb",null,{"children":["$","$6",null,{"name":"Next.Metadata","children":"$Lc"}]}]}],null]}],false]],"m":"$undefined","G":["$d",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0zq1af3eajaxe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"OmBjh8Me7uNLcrz86_CJS"}
+e:[]
+8:"$We"
+f:I[81956,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/1whrehngmait9.js"],"default"]
+10:I[22982,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/2im7c515bo69p.js","/_next/static/chunks/1whrehngmait9.js"],"default"]
+11:Tce9,# Tích hợp Roo AI Assistant
+
+Tích hợp Jet Router với Roo AI Assistant để truy cập nhiều model AI qua một giao diện thống nhất.
+
+## Yêu cầu
+
+- Roo AI Assistant đã cài đặt
+- Jet Router API key từ [dashboard](https://router.example.com/dashboard)
+- Jet Router đang chạy (cục bộ hoặc cloud)
+
+## Các bước Cấu hình
+
+### 1. Mở Roo Settings
+
+Khởi chạy Roo AI Assistant và mở panel settings.
+
+### 2. Cấu hình API Provider
+
+1. Đi đến cài đặt **API Provider**
+2. Chọn **Ollama** làm provider type
+3. Cấu hình các settings sau:
+
+**Cho Jet Router cục bộ:**
+```
+Base URL: http://localhost:20128/v1
+API Key: your-api-key-from-dashboard
+```
+
+**Cho Jet Router cloud:**
+```
+Base URL: https://router.example.com/v1
+API Key: your-api-key-from-dashboard
+```
+
+### 3. Chọn Model
+
+Chọn từ các model Jet Router có sẵn:
+
+**Claude Models:**
+- `cc/claude-opus-4-5-20251101` - Mạnh nhất
+- `cc/claude-sonnet-4-20250514` - Cân bằng
+- `cc/claude-haiku-4-20250514` - Nhanh
+
+**DeepSeek Models:**
+- `cx/deepseek-chat` - Đa năng
+- `cx/deepseek-reasoner` - Reasoning phức tạp
+
+**GLM Models:**
+- `glm/glm-4-plus` - Nâng cao
+- `glm/glm-4-flash` - Phản hồi nhanh
+
+### 4. Test Connection
+
+Gửi tin nhắn test để xác minh tích hợp:
+
+```
+Hello! Can you confirm you're connected through Jet Router?
+```
+
+## Ví dụ Sử dụng
+
+### Chat Cơ bản
+```
+Ask Roo: "Explain quantum computing in simple terms"
+Model: cc/claude-sonnet-4-20250514
+```
+
+### Tạo Code
+```
+Ask Roo: "Write a Python function to calculate Fibonacci numbers"
+Model: cx/deepseek-chat
+```
+
+### Reasoning Phức tạp
+```
+Ask Roo: "Analyze the trade-offs between microservices and monolithic architecture"
+Model: cx/deepseek-reasoner
+```
+
+## Mẹo Chọn Model
+
+- **Task nhanh**: Dùng `cc/claude-haiku-4-20250514` hoặc `glm/glm-4-flash`
+- **Hiệu năng cân bằng**: Dùng `cc/claude-sonnet-4-20250514` hoặc `cx/deepseek-chat`
+- **Reasoning phức tạp**: Dùng `cc/claude-opus-4-5-20251101` hoặc `cx/deepseek-reasoner`
+- **Tối ưu chi phí**: Dùng model DeepSeek hoặc GLM
+
+## Troubleshooting
+
+### Connection Failed
+- Xác minh Jet Router đang chạy: `curl http://localhost:20128/health`
+- Kiểm tra API key đúng
+- Đảm bảo Base URL bao gồm hậu tố `/v1`
+
+### Model không khả dụng
+- Kiểm tra tên model khớp chính xác (case-sensitive)
+- Xác minh model được bật trong Jet Router plan
+- Thử model khác từ danh sách
+
+### Phản hồi Chậm
+- Chuyển sang model nhanh hơn (haiku, flash)
+- Kiểm tra kết nối network
+- Theo dõi logs Jet Router để xem vấn đề
+
+## Cấu hình Nâng cao
+
+### Custom Model Aliases
+
+Bạn có thể tạo shortcut cho model thường dùng trong Roo settings:
+
+```
+Alias: "fast" → cc/claude-haiku-4-20250514
+Alias: "smart" → cc/claude-opus-4-5-20251101
+Alias: "code" → cx/deepseek-chat
+```
+
+### Nhiều Profile
+
+Setup profile khác nhau cho use case khác nhau:
+- **Development**: Model DeepSeek cho code
+- **Writing**: Model Claude cho nội dung
+- **Research**: Model Reasoner cho phân tích
+
+## Bước tiếp theo
+
+- [Cấu hình Cursor](cursor.md) cho tích hợp IDE
+- [Setup Continue](continue.md) cho VSCode
+- [Khám phá CLI usage](../cli/basic-usage.md)
+4:["$","$Lf",null,{"headings":[{"level":2,"text":"Yêu cầu","id":"yêu-cầu"},{"level":2,"text":"Các bước Cấu hình","id":"các-bước-cấu-hình"},{"level":3,"text":"1. Mở Roo Settings","id":"1-mở-roo-settings"},{"level":3,"text":"2. Cấu hình API Provider","id":"2-cấu-hình-api-provider"},{"level":3,"text":"3. Chọn Model","id":"3-chọn-model"},{"level":3,"text":"4. Test Connection","id":"4-test-connection"},{"level":2,"text":"Ví dụ Sử dụng","id":"ví-dụ-sử-dụng"},{"level":3,"text":"Chat Cơ bản","id":"chat-cơ-bản"},{"level":3,"text":"Tạo Code","id":"tạo-code"},{"level":3,"text":"Reasoning Phức tạp","id":"reasoning-phức-tạp"},{"level":2,"text":"Mẹo Chọn Model","id":"mẹo-chọn-model"},{"level":2,"text":"Troubleshooting","id":"troubleshooting"},{"level":3,"text":"Connection Failed","id":"connection-failed"},{"level":3,"text":"Model không khả dụng","id":"model-không-khả-dụng"},{"level":3,"text":"Phản hồi Chậm","id":"phản-hồi-chậm"},{"level":2,"text":"Cấu hình Nâng cao","id":"cấu-hình-nâng-cao"},{"level":3,"text":"Custom Model Aliases","id":"custom-model-aliases"},{"level":3,"text":"Nhiều Profile","id":"nhiều-profile"},{"level":2,"text":"Bước tiếp theo","id":"bước-tiếp-theo"}],"lang":"vi","children":["$","$L10",null,{"content":"$11"}]}]
+a:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+7:null
+c:[["$","title","0",{"children":"Jet Router Documentation"}],["$","meta","1",{"name":"description","content":"Smart AI model router - Maximize subscriptions, minimize costs"}]]
