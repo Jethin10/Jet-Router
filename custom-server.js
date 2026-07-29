@@ -80,4 +80,24 @@ if (!fs.existsSync(serverEntry)) {
   throw new Error("Jet Router production bundle is missing. Run `npm run build` before `npm start`.");
 }
 
+// `next build` deliberately leaves public assets and client chunks outside the
+// standalone directory. Container images copy them beside server.js, while a
+// source checkout needs the same layout prepared before the local server starts.
+if (serverEntry === localStandaloneServer) {
+  const standaloneRoot = path.dirname(localStandaloneServer);
+  const assetDirectories = [
+    [path.join(__dirname, "public"), path.join(standaloneRoot, "public")],
+    [
+      path.join(__dirname, ".next", "static"),
+      path.join(standaloneRoot, ".next", "static"),
+    ],
+  ];
+
+  for (const [source, destination] of assetDirectories) {
+    if (fs.existsSync(source)) {
+      fs.cpSync(source, destination, { recursive: true, force: true });
+    }
+  }
+}
+
 require(serverEntry);
